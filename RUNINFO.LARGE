@@ -1,0 +1,100 @@
+&RUNINFO
+  start_date  = "0000200_000000",
+  end_date    = "0000201_000000",
+  dtime       = 20.0,
+  inputdir    = "data"
+  outputdir   = "result_smag2"
+  reportfile  = "REPORT"
+  hydrostatic = T,
+/
+
+&GEOMETRY
+  dimx        = 400 ,
+  dimy        = 900 ,
+  dimz        = 60,
+  delta_x     = 250.0,
+  delta_y     = 250.0,
+  delta_z     = 2.0, 1.9, 1.8, 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.20, 0.20, 0.20, 0.20, 0.20, 0.20, 0.20, 0.15, 0.10, 0.10, 0.10, 0.10, 0.15, 0.20, 0.25,
+  open_n      = T,
+  open_s      = T,
+  open_w      = F,
+  open_e      = F,
+  cycle_x     = F,
+  topography  = "idlzS_symmetric",
+  output_dvol = T,
+  coriolis_z  = "$1.0D-4"
+/
+
+&INITIAL varname="U",   filename="U.0000200_000000" /
+&INITIAL varname="V",   filename="V.0000200_000000" /
+&INITIAL varname="W",   filename="W.0000200_000000" /
+&INITIAL varname="T",   filename="T.0000200_000000" /
+&INITIAL varname="S",   filename="S.0000200_000000" /
+&INITIAL varname="SSH", filename="SSH.0000200_000000"/
+&INITIAL varname="TKE",   filename="TKE.0000200_000000" /
+&INITIAL varname="GLS",   filename="GLS.0000200_000000" /
+
+&OUTPUT_DEFAULT
+  interval= "0000000_001000",
+/
+
+&OUTPUT  varname="U", MEAN=T/
+&OUTPUT  varname="V", MEAN=T/
+&OUTPUT  varname="W", MEAN=T/
+&OUTPUT  varname="T", MEAN=T/
+&OUTPUT  varname="S", MEAN=T/
+&OUTPUT  varname="SSH", MEAN=T/
+&OUTPUT  varname="TKE", MEAN=T/
+&OUTPUT  varname="GLS", MEAN=T/
+&OUTPUT  varname="SFREQ2", MEAN=T/
+&OUTPUT  varname="VISCV", MEAN=T/
+&OUTPUT  varname="VISCT", MEAN=T/
+&OUTPUT  varname="FDZ_S", MEAN=T/
+&OUTPUT  varname="BTM_TAUX", MEAN=T/
+&OUTPUT  varname="BTM_TAUY", MEAN=T/
+
+&TRACER
+ varname = "T",
+ diffusion_scheme = 4,
+/
+
+&TRACER
+ varname = "S",
+ diffusion_scheme = 4,
+/
+
+&GLS
+ USE_GLS = T,
+/
+
+&INPUT_DEFAULT
+  inputdir = "data"
+/
+
+&PARAMETERS
+ EQ_OF_STATE = 1,
+ NONLINEAR_SCHEME = 2,
+ VISC_H = 1.0D0,
+ DIFF_H = 1.0D0,
+ VISCOSITY_SCHEME=4,
+ EOS_LIN_ALPHA = 2.0D-4,
+ SLIP_BOTTOM = T
+ BULK_BOTTOM_STRESS = T
+ C_SMAGORINSKY_VISC=0.1,
+ C_SMAGORINSKY_DIFF=0.0,
+/
+
+&INPUT varname = "V_SOUTH",    filename = "$1.00e-2", mode="SIN", INTERVAL="12H", start="0000000_000000", offset=-6.0e-5/
+&INPUT varname = "V_NORTH",    filename = "$-1.80e-1"/
+&INPUT varname = "T_SOUTH",    filename = "$17.35"/
+&INPUT varname = "S_SOUTH",    filename = "$32.0"/
+&INPUT varname = "T_NORTH",    filename = "$17.35"/
+&INPUT varname = "S_NORTH",    filename = "$22.0"/
+&INPUT varname = "RESTORE_S",  filename = "$32.0"/
+&INPUT varname = "RESTORE_T",  filename = "$17.35"/
+&INPUT varname = "RESTORE_U",  filename = "$0.0"/
+&INPUT varname = "RESRATE_S",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_T",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_VELOCITY",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
+&INPUT varname = "DIFF_V",    filename = "$1e-6"/
+&INPUT varname = "VISC_V",    filename = "$1e-6"/
