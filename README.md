@@ -11,3 +11,4 @@ Depth_CTRL
 Depth_DEEP
 Depth_NOEST
 Depth_FLAT
+Depth_longriver
