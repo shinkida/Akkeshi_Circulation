@@ -85,8 +85,8 @@
 &INPUT varname = "RESTORE_S",  filename = "$32.0"/
 &INPUT varname = "RESTORE_T",  filename = "$17.35"/
 &INPUT varname = "RESTORE_U",  filename = "$0.0"/
-&INPUT varname = "RESRATE_S",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
-&INPUT varname = "RESRATE_T",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
-&INPUT varname = "RESRATE_VELOCITY",  filename = "idlzR_restore_noside",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_S",  filename = "restore_control",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_T",  filename = "restore_control",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_VELOCITY",  filename = "restore_control",  scale = 4.63D-5/
 &INPUT varname = "DIFF_V",    filename = "$1e-6"/
 &INPUT varname = "VISC_V",    filename = "$1e-6"/
