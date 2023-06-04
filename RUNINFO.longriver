@@ -1,0 +1,92 @@
+&RUNINFO
+  start_date  = "0000000_000000",
+  end_date    = "0000010_000000",
+  dtime       = 4.0,
+  inputdir    = "data"
+  outputdir   = "result_smag"
+  reportfile  = "REPORT"
+/
+
+&GEOMETRY
+  dimx        = 520 ,
+  dimy        = 900 ,
+  dimz        = 60,
+  delta_x     = 25.0,
+  delta_y     = 25.0,
+  delta_z     = 2.0, 1.9, 1.8, 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.20, 0.20, 0.20, 0.20, 0.20, 0.20, 0.20, 0.15, 0.10, 0.10, 0.10, 0.10, 0.15, 0.20, 0.25,
+  open_n      = T,
+  open_s      = T,
+  open_w      = F,
+  open_e      = F,
+  cycle_x     = F,
+  topography  = "Depth_longriver",
+  output_dvol = T,
+/
+
+&INITIAL varname="U",   filename="$0.0" /
+&INITIAL varname="V",   filename="$0.0" /
+&INITIAL varname="W",   filename="$0.0" /
+&INITIAL varname="T",   filename="$17.35" /
+&INITIAL varname="S",   filename="$32.0" /
+&INITIAL varname="SSH", filename="$-0.1"/
+&INITIAL varname="TKE",   filename="$0.0" /
+&INITIAL varname="GLS",   filename="$0.0" /
+
+&OUTPUT_DEFAULT
+  interval= "0000000_003000",
+/
+
+&OUTPUT  varname="U" /
+&OUTPUT  varname="V" /
+&OUTPUT  varname="W" /
+&OUTPUT  varname="T" /
+&OUTPUT  varname="S" /
+&OUTPUT  varname="SSH" /
+&OUTPUT  varname="TKE" /
+&OUTPUT  varname="GLS" /
+
+&TRACER
+ varname = "T",
+ diffusion_scheme = 4,
+/
+
+&TRACER
+ varname = "S",
+ diffusion_scheme = 4,
+/
+
+&GLS
+ USE_GLS = T,
+/
+
+&INPUT_DEFAULT
+  inputdir = "data"
+/
+
+&PARAMETERS
+ EQ_OF_STATE = 1,
+ NONLINEAR_SCHEME = 2,
+ VISC_H = 0.0D-2,
+ DIFF_H = 0.0D-2,
+ VISCOSITY_SCHEME=4,
+ EOS_LIN_ALPHA = 2.0D-4,
+ SLIP_BOTTOM = T
+ BULK_BOTTOM_STRESS = T
+ C_SMAGORINSKY_VISC=0.1,
+ C_SMAGORINSKY_DIFF=0.0,
+/
+
+&INPUT varname = "V_SOUTH",    filename = "$1.00e-2", mode="SIN", INTERVAL="12H", start="0000000_000000", offset=-6.0e-5/
+&INPUT varname = "V_NORTH",    filename = "$-1.80e-1"/
+&INPUT varname = "T_SOUTH",    filename = "$17.35"/
+&INPUT varname = "S_SOUTH",    filename = "$32.0"/
+&INPUT varname = "T_NORTH",    filename = "$17.35"/
+&INPUT varname = "S_NORTH",    filename = "$22.0"/
+&INPUT varname = "RESTORE_S",  filename = "$32.0"/
+&INPUT varname = "RESTORE_T",  filename = "$17.35"/
+&INPUT varname = "RESTORE_U",  filename = "$0.0"/
+&INPUT varname = "RESRATE_S",  filename = "idlzR_restore_noside_riverlong2",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_T",  filename = "idlzR_restore_noside_riverlong2",  scale = 4.63D-5/
+&INPUT varname = "RESRATE_VELOCITY",  filename = "idlzR_restore_noside_riverlong2",  scale = 4.63D-5/
+&INPUT varname = "DIFF_V",    filename = "$1e-6"/
+&INPUT varname = "VISC_V",    filename = "$1e-6"/
