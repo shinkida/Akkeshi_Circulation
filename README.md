@@ -1,6 +1,6 @@
 # Akkeshi_Circulation
 
-Model configuration files for KINACO used fo Akkeshi Circulation experiments
+Model configuration files for KINACO used for Akkeshi Circulation experiments
 
 (1) Input file
 RUNINFO
